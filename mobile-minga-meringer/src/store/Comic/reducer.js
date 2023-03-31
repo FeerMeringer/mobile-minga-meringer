@@ -1,0 +1,46 @@
+import { createReducer } from "@reduxjs/toolkit";
+import eventsActions from './actions.js'
+const {read_events, read_manga, read_chapters} = eventsActions
+
+const initialState ={
+    events: [],
+    manga: [],
+    chapters : []
+}
+
+const reducer = createReducer(
+    initialState,
+    (builder) => builder
+    .addCase(
+        read_events.fulfilled,
+        (state,actions)=>{
+            let newState = {
+                ...state,
+                events: actions.payload.events
+            }
+            return newState
+        }
+    )
+    .addCase(
+        read_manga.fulfilled,
+        (state,actions)=>{
+            let newState = {
+                ...state,
+                manga: actions.payload.manga
+            }
+            return newState
+        }
+    )
+    .addCase(
+        read_chapters.fulfilled,
+        (state,actions)=>{
+            let newState = {
+                ...state,
+                chapters: actions.payload.chapters
+            }
+            return newState
+        }
+    )
+)
+
+export default reducer
