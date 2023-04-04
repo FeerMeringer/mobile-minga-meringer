@@ -1,21 +1,24 @@
 import { configureStore } from '@reduxjs/toolkit'
-import alertReducer from './Alert/reduce'
 import textReducer from './Text/reducer'
-import eventReducer from './Comic/reducer'
-import checksReducer from './Checks/reducer'
 import mangaReducer from './Manga/reduce'
 import captureState from './Capture/reducer'
-import authorReducer from './profile/reducer'
+import chaptersReducer from './Chapters/reducer'
+import bottomTabsReducer from "./Perfil/reducer"
+import chapterClickReducer from './ChapterClicked/reducer'
+import mangaClickReducer from  './Details/reducer'
+import sortReducer from './Sort/reducer'
 
 export const store = configureStore ({
     reducer: {
-        alert: alertReducer, //alert por ahora tiene 3 estados, visible, title y succes
         text: textReducer,
-        events: eventReducer,
-        checks: checksReducer,
-        manga: mangaReducer,
+        mangareducer: mangaReducer,
+        order: sortReducer,
+        chapters: chaptersReducer,
         checked: captureState,
-        author: authorReducer,
+        bottomTabsReducer: bottomTabsReducer,
+        mangaClickReducer: mangaClickReducer,
+        chapterClickReducer: chapterClickReducer
     },
+    
     devTools: true,
 })

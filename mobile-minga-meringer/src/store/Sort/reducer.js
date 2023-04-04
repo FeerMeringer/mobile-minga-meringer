@@ -1,25 +1,25 @@
 import { createReducer } from "@reduxjs/toolkit";
-import textActions from './action'
+import sortActions from './actions'
 
-const { captureText } = textActions
+const { captureSort } = sortActions
 
 const initialState = {
-    text: ""
+    order: 1
 }
 
-const textReducer = createReducer(
+const sortReducer = createReducer(
     initialState,
     (builder) => builder
         .addCase(
-            captureText,
+            captureSort,
             (state, action) => {
                 let newState = {
                     ...state,
-                    text: action.payload.text.trim()
+                    order: action.payload.order
                 }
                 return newState
             }
         )
 )
 
-export default textReducer
+export default sortReducer

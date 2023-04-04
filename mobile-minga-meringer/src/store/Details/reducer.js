@@ -1,25 +1,25 @@
 import { createReducer } from "@reduxjs/toolkit";
-import textActions from './action'
+import mangaClickActions from './actions'
 
-const { captureText } = textActions
+const { mangaClicked } = mangaClickActions
 
 const initialState = {
-    text: ""
+    state: false,
 }
 
-const textReducer = createReducer(
+const mangaClickReducer = createReducer(
     initialState,
     (builder) => builder
         .addCase(
-            captureText,
+            mangaClicked,
             (state, action) => {
                 let newState = {
                     ...state,
-                    text: action.payload.text.trim()
+                    state: action.payload.state,
                 }
                 return newState
             }
         )
 )
 
-export default textReducer
+export default mangaClickReducer

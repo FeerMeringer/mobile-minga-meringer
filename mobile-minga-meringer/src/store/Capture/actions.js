@@ -4,10 +4,10 @@ let captureState = createAction(
     'captureState',
     ({ buttonState, page }) => {
         return {
-            payload: { 
+            payload: {
                 checked: buttonState,
                 page: page
-             }
+            }
         }
     }
 )

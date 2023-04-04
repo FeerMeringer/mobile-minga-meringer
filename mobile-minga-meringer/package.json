@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "1.17.11",
     "@react-native-community/checkbox": "^0.5.15",
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/native": "^6.1.6",
@@ -17,15 +18,16 @@
     "expo": "~48.0.9",
     "expo-status-bar": "~1.4.4",
     "react": "18.2.0",
-    "react-native": "0.71.4",
+    "react-native": "0.71.6",
     "react-native-android-checkbox": "^3.1.1",
+    "react-native-gesture-handler": "^2.9.0",
     "react-native-linear-gradient": "^2.6.2",
+    "react-native-loading-spinner-overlay": "^3.0.1",
     "react-native-pagination": "^1.5.5",
     "react-native-screens": "^3.20.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.10.0",
-    "react-router-native": "^6.10.0",
-    "@react-native-async-storage/async-storage": "1.17.11"
+    "react-router-native": "^6.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

@@ -1,25 +1,25 @@
 import { createReducer } from "@reduxjs/toolkit";
-import textActions from './action'
+import bottomTabsActions from './action'
 
-const { captureText } = textActions
+const { reloadBottomTabs } = bottomTabsActions
 
 const initialState = {
-    text: ""
+    state: false,
 }
 
-const textReducer = createReducer(
+const bottomTabsReducer = createReducer(
     initialState,
     (builder) => builder
         .addCase(
-            captureText,
+            reloadBottomTabs,
             (state, action) => {
                 let newState = {
                     ...state,
-                    text: action.payload.text.trim()
+                    state: action.payload.state,
                 }
                 return newState
             }
         )
 )
 
-export default textReducer
+export default bottomTabsReducer

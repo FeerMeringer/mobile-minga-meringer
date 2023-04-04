@@ -1,25 +1,25 @@
 import { createReducer } from "@reduxjs/toolkit";
-import textActions from './action'
+import chapterClickActions from './actions'
 
-const { captureText } = textActions
+const { chapterClicked } = chapterClickActions
 
 const initialState = {
-    text: ""
+    state: false,
 }
 
-const textReducer = createReducer(
+const chapterClickReducer = createReducer(
     initialState,
     (builder) => builder
         .addCase(
-            captureText,
+            chapterClicked,
             (state, action) => {
                 let newState = {
                     ...state,
-                    text: action.payload.text.trim()
+                    state: action.payload.state,
                 }
                 return newState
             }
         )
 )
 
-export default textReducer
+export default chapterClickReducer

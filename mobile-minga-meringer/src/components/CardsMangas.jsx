@@ -1,15 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import detailsActions from "../store/Details/actions"
+import Spinner from 'react-native-loading-spinner-overlay/lib';
 
-export default function CardMangas({ title, category, photo }) {
+const { mangaClicked } = detailsActions
+
+export default function CardMangas({ title, category, photo, _id }) {
+    const [loading, setLoading] = useState()
     const navigation = useNavigation();
+    const dispatch = useDispatch();
     const categoryColor = {
         shonen: { color: '#EF8481' },
         shojo: { color: '#00BA88' },
         seinen: { color: '#FC9C57' },
         comic: { color: '#8883F0' }
     };
+
+    function goToDetailsScreen() {
+        dispatch(mangaClicked({ state: true }))
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+            navigation.navigate('Details', { _id });
+        }, 500);
+
+    }
 
     return (
         <View style={styles.card}>
@@ -20,32 +37,30 @@ export default function CardMangas({ title, category, photo }) {
                 </View>
                 <Text
                     style={styles.read}
-                    onPress={() => {
-                        navigation.navigate('register');
-                    }}
+
+                    onPress={goToDetailsScreen}
                 >
-                    Read
+                    Details
                 </Text>
+
             </View>
 
             <View style={styles.imgContainer}>
                 <Image style={styles.imgManga} source={photo} />
             </View>
+            <Spinner visible={loading} textContent={'Loading...'} textStyle={{ color: '#FFF' }} />
         </View>
     );
 }
-
 const styles = StyleSheet.create({
     card: {
-        backgroundColor: "rgba(238, 238, 238, 0.8)",
+        backgroundColor: "rgba(238, 238, 238, 1)",
         flexDirection: 'row',
         marginVertical: 10,
         width: "95%",
-        borderWidth: 1,
-        borderColor: 'orange',
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
-        
+        borderWidth: 3,
+        borderColor: '#FFA500',
+        borderRadius: 16
     },
     shonen: {
         backgroundColor: '#F06C9B',
@@ -68,22 +83,23 @@ const styles = StyleSheet.create({
         textTransform: 'uppercase',
     },
     read: {
-        backgroundColor: '#808080',
-        color: '#FFA500',
+        backgroundColor: "#FFA500",
+        color: '#FFF',
         paddingVertical: 5,
         paddingHorizontal: 10,
-        borderRadius: 18,
+        borderRadius: 5,
         alignSelf: 'flex-start',
     },
     imgContainer: {
-        width: '50%',
+        width: "50%",
         height: 150,
+        borderRadius: 5,
         overflow: 'hidden',
     },
     imgManga: {
         width: '100%',
         height: '100%',
         resizeMode: 'cover',
-        borderTopRightRadius: 20,
+        borderRadius: 16
     },
 });
