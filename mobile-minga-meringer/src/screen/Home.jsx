@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { useEffect, useState } from "react";
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 import AuthForm from './AuthForm'
 import Hero from '../components/Hero';
 import Login from '../components/FormLogin'

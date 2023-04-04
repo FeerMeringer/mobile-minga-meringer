@@ -23,7 +23,9 @@ export default function Details({ route }) {
     const [pagina, setPagination] = useState(1); // Set default value to 1
     const { page } = useParams();
 
+
     const _id = route.params && route.params._id;
+    // console.log(route.params)
     const dispatch = useDispatch();
 
     const navigation = useNavigation();
@@ -33,7 +35,7 @@ export default function Details({ route }) {
     };
 
     const handleChapterPress = (chapter) => {
-        navigation.navigate('Chapter', { chapter });
+        navigation.navigate('Chapter', { chapterId: chapter._id });
     };
 
     useEffect(() => {
@@ -58,21 +60,22 @@ export default function Details({ route }) {
 
                     <View style={styles.sectionManga}>
 
-                        <Text style={styles.titulo}>{manga.title}</Text>
-                        <Text>{manga.category_id && manga.category_id.name}</Text>
+                        <Text style={styles.titulo}>{manga?.title}</Text>
+                        <Text>{manga.category_id && manga?.category_id.name}</Text>
                         <View>
                             <TouchableOpacity onPress={toggleView}>
-                                <Text style={styles.show}>{showChapters ? "Go description" : "Go chapters"}</Text>
+                                <Text style={styles.show}>{showChapters ? " chapter" : "description"}</Text>
                             </TouchableOpacity>
                             {showChapters ? (
                                 // Vista de capítulos
                                 <View style={styles.contChapters}>
                                     {[chapters[0]].map((chapter) => {
                                         let card = (
-                                            <TouchableOpacity key={chapter.id} onPress={() => handleChapterPress(chapter)}>
-                                                <View>
+                                            <TouchableOpacity key={chapter?._id} onPress={() => handleChapterPress(chapter)}>
+                                                <View key={chapter?._id}>
+
                                                     <Image source={{ uri: chapter?.pages[0] }} style={styles.bannerPhotoChapter} />
-                                                    <Text style={styles.titleChapter}>{chapter.title}</Text>
+                                                    <Text style={styles.titleChapter}>{chapter?.title}</Text>
                                                 </View>
                                             </TouchableOpacity>
                                         );

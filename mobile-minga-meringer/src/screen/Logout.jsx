@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import bottomsTabsActions from '../store/ReloadBottomTabs/actions';
+import bottomsTabsActions from '../store/Details/actions';
 import mangaClickActions from '../store/Details/actions';
 import chapterClickActions from '../store/ChapterClicked/actions';
 import { StyleSheet } from 'react-native';
